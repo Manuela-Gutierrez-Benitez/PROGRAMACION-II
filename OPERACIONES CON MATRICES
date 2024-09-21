@@ -1,0 +1,236 @@
+#include <iostream>
+
+using namespace std;
+
+// Función para leer una matriz de tamaño máximo 4x4
+void leerMatriz(int matriz[4][4], int tamaño) {
+cout << "Ingrese los elementos de la matriz (" << tamaño << "x" << tamaño << "):" << endl;
+for (int i = 0; i < tamaño; ++i) {
+for (int j = 0; j < tamaño; ++j) {
+cin >> matriz[i][j];
+}
+}
+}
+
+// Función para imprimir una matriz de tamaño máximo 4x4
+void imprimirMatriz(int matriz[4][4], int tamaño) {
+for (int i = 0; i < tamaño; ++i) {
+for (int j = 0; j < tamaño; ++j) {
+cout << matriz[i][j] << " ";
+}
+cout << endl;
+}
+}
+
+// Función para leer una matriz de tamaño 2x2
+void leerMatriz2x2(int matriz[2][2]) {
+cout << "Ingrese los elementos de la matriz 2x2:" << endl;
+for (int i = 0; i < 2; ++i) {
+for (int j = 0; j < 2; ++j) {
+
+cin >> matriz[i][j];
+}
+}
+}
+
+// Función para imprimir una matriz de tamaño 2x2
+
+void imprimirMatriz2x2(float matriz[2][2]) {
+for (int i = 0; i < 2; ++i) {
+for (int j = 0; j < 2; ++j) {
+cout << matriz[i][j] << " ";
+}
+cout << endl;
+}
+}
+
+void sumarRestarMatrices() {
+int tamaño;
+cout << "Ingrese el tamaño de la matriz (máximo 4): ";
+cin >> tamaño;
+
+if (tamaño > 4) {
+cout << "El tamaño máximo permitido es 4x4." << endl;
+return;
+}
+
+int A[4][4], B[4][4];
+
+cout << "Ingrese la primera matriz:" << endl;
+leerMatriz(A, tamaño);
+
+cout << "Ingrese la segunda matriz:" << endl;
+leerMatriz(B, tamaño);
+
+int suma[4][4], resta[4][4];
+
+for (int i = 0; i < tamaño; ++i) {
+for (int j = 0; j < tamaño; ++j) {
+suma[i][j] = A[i][j] + B[i][j];
+resta[i][j] = A[i][j] - B[i][j];
+}
+}
+
+cout << "Suma de las matrices:" << endl;
+imprimirMatriz(suma, tamaño);
+
+cout << "Resta de las matrices:" << endl;
+imprimirMatriz(resta, tamaño);
+}
+
+void multiplicarPorEscalar() {
+int tamaño;
+cout << "Ingrese el tamaño de la matriz (máximo 4): ";
+cin >> tamaño;
+
+if (tamaño > 4) {
+cout << "El tamaño máximo permitido es 4x4." << endl;
+
+return;
+}
+
+int matriz[4][4];
+leerMatriz(matriz, tamaño);
+
+int escalar;
+cout << "Ingrese el valor del escalar: ";
+cin >> escalar;
+
+cout << " Multiplicación de la matriz por el escalar:" << endl;
+for (int i = 0; i < tamaño; ++i) {
+for (int j = 0; j < tamaño; ++j) {
+cout << matriz[i][j] * escalar << " ";
+}
+cout << endl;
+}
+}
+
+void multiplicarMatrices() {
+int tamaño;
+cout << "Ingrese el tamaño de las matrices (máximo 4): ";
+cin >> tamaño;
+
+if (tamaño > 4) {
+cout << "El tamaño máximo permitido es 4x4." << endl;
+return;
+}
+
+int A[4][4], B[4][4], resultado[4][4] = {0};
+
+cout << "Ingrese la primera matriz:" << endl;
+leerMatriz(A, tamaño);
+
+cout << "Ingrese la segunda matriz:" << endl;
+leerMatriz(B, tamaño);
+
+for (int i = 0; i < tamaño; ++i) {
+for (int j = 0; j < tamaño; ++j) {
+for (int k = 0; k < tamaño; ++k) {
+resultado[i][j] += A[i][k] * B[k][j];
+}
+}
+}
+
+cout << "Producto de las matrices:" << endl;
+imprimirMatriz(resultado, tamaño);
+}
+
+void transponerMatriz() {
+int tamaño;
+cout << "Ingrese el tamaño de la matriz (máximo 4): ";
+cin >> tamaño;
+
+if (tamaño > 4) {
+cout << "El tamaño máximo permitido es 4x4." << endl;
+return;
+}
+
+int matriz[4][4], transpuesta[4][4];
+
+cout << "Ingrese la matriz:" << endl;
+leerMatriz(matriz, tamaño);
+
+for (int i = 0; i < tamaño; ++i) {
+for (int j = 0; j < tamaño; ++j) {
+transpuesta[j][i] = matriz[i][j];
+}
+}
+
+cout << "Matriz transpuesta:" << endl;
+imprimirMatriz(transpuesta, tamaño);
+}
+
+void calcularDeterminante() {
+int matriz[2][2];
+leerMatriz2x2(matriz);
+
+int determinante = matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
+cout << "Determinante: " << determinante << endl;
+}
+void calcularInversa() {
+int matriz[2][2];
+leerMatriz2x2(matriz); // Usa la función específica para 2x2
+
+int determinante = matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
+
+if (determinante == 0) {
+cout << "La matriz no tiene inversa." << endl;
+return;
+}
+
+float inversa[2][2];
+inversa[0][0] = static_cast<float>(matriz[1][1]) / determinante;
+inversa[0][1] = -static_cast<float>(matriz[0][1]) / determinante;
+inversa[1][0] = -static_cast<float>(matriz[1][0]) / determinante;
+inversa[1][1] = static_cast<float>(matriz[0][0]) / determinante;
+
+cout << "Matriz inversa:" << endl;
+imprimirMatriz2x2(inversa); // Usa la función actualizada para 2x2
+}
+
+int main() {
+int opcion;
+do {
+cout << endl;
+cout << "Menu:" << endl;
+cout << "1. Suma y Resta de Matrices" << endl;
+cout << "2. Multiplicación por un Escalar" << endl;
+cout << "3. Multiplicación de Matrices" << endl;
+cout << "4. Transposición de Matrices" << endl;
+cout << "5. Determinante de una Matriz 2x2" << endl;
+cout << "6. Inversa de una Matriz 2x2" << endl;
+cout << "0. Salir" << endl;
+
+cout << "Ingrese su opción: ";
+cin >> opcion;
+
+switch (opcion) {
+case 1:
+sumarRestarMatrices();
+return 0;
+case 2:
+multiplicarPorEscalar();
+return 0;
+case 3:
+multiplicarMatrices();
+return 0;
+case 4:
+transponerMatriz();
+return 0;
+case 5:
+calcularDeterminante();
+return 0;
+case 6:
+calcularInversa();
+return 0;
+case 0:
+cout << "Saliendo..." << endl;
+return 0 ;
+default:
+cout << "Opción no válida. Intente de nuevo." << endl;
+}
+
+} while (opcion != 0);
+
+return 0;
+}
