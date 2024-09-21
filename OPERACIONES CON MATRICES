@@ -207,25 +207,25 @@ cin >> opcion;
 switch (opcion) {
 case 1:
 sumarRestarMatrices();
-return 0;
+break;
 case 2:
 multiplicarPorEscalar();
-return 0;
+break;
 case 3:
 multiplicarMatrices();
-return 0;
+break;
 case 4:
 transponerMatriz();
-return 0;
+break;
 case 5:
 calcularDeterminante();
-return 0;
+break;
 case 6:
 calcularInversa();
-return 0;
+break;
 case 0:
 cout << "Saliendo..." << endl;
-return 0 ;
+break;
 default:
 cout << "Opción no válida. Intente de nuevo." << endl;
 }
